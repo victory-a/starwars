@@ -1,51 +1,62 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component } from 'react';
 import NavBar from '../components/NavBar.js'; 
 import logo from '../images/logo.png';
 import { urls, apiCall } from '../api/apiCall';
+import CardList from '../components/CardList';
 
 
 class App extends Component {
   constructor() {
     super()
+    this.state = {
+      searchParams: '',
+      route: 'home'
+    } 
   }
 
+  componentDidMount() {
+    const [ films, planets, starships, people ] = urls;
+    if(!this.state.films) {
+      apiCall(films).then(data=>this.setState({ films: data}))
+      apiCall(planets).then(data=>this.setState({ planets: data}))
+      apiCall(starships).then(data=>this.setState({ starships: data}))
+      apiCall(people).then(data=>this.setState({ people: data}))
+    }
+  }
+  componentDidUpdate(prevProp, prevState) {
+    if(this.state.films !== prevState.films) {
+      console.log(this.state.films[3].title)
+    }
+  }
 
-componentDidMount() {
-  const [films, planets, starships, people] = urls;
-  apiCall(films).then(data=>this.setState({ films: data}))
-  apiCall(planets).then(data=>this.setState({ planets: data}))
-  apiCall(starships).then(data=>this.setState({ starships: data}))
-  apiCall(people).then(data=>this.setState({ people: data}))
-}
+  onSearchChange = (event) => {
+    this.setState({
+        searchParams: event.target.value
+    })
+  }
 
-// //To be modified to assign unique names for search param in state
-// onSearch = (e) => {
-//   const { target: { name, value } } = e;
-//   this.setState({
-//     [name]: value
-//   })
-// } 
-
-// //To be  modified to assign unique names for search param. in state
-// onClick = (e) => {
-// const { target : { name, value} } = e;
-// this.setState({
-//   [name]: value
-// })
-// }
-    
+  onRouteChange = (event) => {
+    this.setState({
+      route: event.target.route
+    })
+  }
 
   render() {
-
+    // const [ films, planets, starships, people ] = this.state;
+    // const filteredFilms = this.state.films.filter(film => {
+    //   return film.title
+    // })
+    // console.log(this.state.films.title)
     return (
-      <Fragment>
+      <>
         <div className="container center">
-          <NavBar logo={logo} />
+          <NavBar logo={logo}  onSearchChange={this.onSearchChange} routeChange={this.onRouteChange}/>
         </div>
-      </Fragment>  
+        {/* <CardList filmsProp= {this.state.films} /> */}
+      </>
+        
     ); 
   }
-
 }
 
 export default App;

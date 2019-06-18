@@ -34,6 +34,12 @@
     margin-right: 0;
 }
 
+button {
+    background-color: transparent;
+    border: 0;
+    outline: none;
+}
+
 .menu__link {
     color: rgba(255,255,0, 0.7);
     display: inline-block;
@@ -53,7 +59,7 @@
 .active {
     color: #ffaa3b;
     text-decoration: none;
-    border-top: 5px solid #ffaa3b;
+    /* border-top: 5px solid #ffaa3b; */
     font-weight: 700;
 }
 

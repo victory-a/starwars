@@ -1,15 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import SearchBox from './SearchBox'
 import './NavBar.css'
-
 
 class NavBar extends Component {
     constructor() {
         super() 
         this.state = {
-            visible:false
+            visible: false,
         }
-
     }
 
     togglevisible = () => {
@@ -18,31 +16,24 @@ class NavBar extends Component {
         })
     }
 
-    // onClick = e => {
-    //     const { target: { value, name}, } = e;    
-    //     this.setState({ [name] : value })
-    // }
-
     render() {
-        const { logo } = this.props;
-               
+        const { logo, onSearchChange, routeChange } = this.props;
+              
         return (
-            <Fragment>
                 <nav className="menu">
                     <h1 style={{backgroundImage: 'url('+ logo +')'}}
                     className="menu__logo" >StarWars</h1>
                     <div className="menu__right">
                     <ul className="menu__list">
-                        <li className='menu__list-item'><a className="menu__link active" href='#home'>Home</a></li>
-                        <li className='menu__list-item'><a className="menu__link " href='#planers'>Planets</a></li>
-                        <li className='menu__list-item'><a className="menu__link" href='#Starships'>Starships</a></li>
-                        <li className='menu__list-item'><a className="menu__link" href='#People'>People</a></li>
+                        <li className='menu__list-item' ><button className="menu__link" route='films'>Films</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" route='planets'>Planets</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" route='starships'>Starships</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" route='people'>People</button></li>
                     </ul>
                     <button className="menu__search-button" onClick={this.togglevisible}></button>
-                    <SearchBox visibility={this.state.visible} />
+                    <SearchBox visibility={this.state.visible} onSearchChange={onSearchChange}/>
                     </div>
                 </nav>
-            </Fragment>
  
         )
     }
