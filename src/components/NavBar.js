@@ -25,10 +25,10 @@ class NavBar extends Component {
                     className="menu__logo" >StarWars</h1>
                     <div className="menu__right">
                     <ul className="menu__list">
-                        <li className='menu__list-item' ><button className="menu__link" route='films'>Films</button></li>
-                        <li className='menu__list-item' ><button className="menu__link" route='planets'>Planets</button></li>
-                        <li className='menu__list-item' ><button className="menu__link" route='starships'>Starships</button></li>
-                        <li className='menu__list-item' ><button className="menu__link" route='people'>People</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" onClick={routeChange} >films</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" onClick={routeChange} >planets</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" onClick={routeChange} >starships</button></li>
+                        <li className='menu__list-item' ><button className="menu__link" onClick={routeChange} >people</button></li>
                     </ul>
                     <button className="menu__search-button" onClick={this.togglevisible}></button>
                     <SearchBox visibility={this.state.visible} onSearchChange={onSearchChange}/>

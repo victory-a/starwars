@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavBar from '../components/NavBar.js'; 
 import logo from '../images/logo.png';
 import { urls, apiCall } from '../api/apiCall';
-import CardList from '../components/CardList';
+import FilmList from '../components/FilmList';
 
 
 class App extends Component {
@@ -23,11 +23,16 @@ class App extends Component {
       apiCall(people).then(data=>this.setState({ people: data}))
     }
   }
-  componentDidUpdate(prevProp, prevState) {
-    if(this.state.films !== prevState.films) {
-      console.log(this.state.films[3].title)
-    }
-  }
+
+  // componentDidUpdate(prevProp, prevState) {
+  //   const {films, planets, starshps, people, searchParams} = this.state;
+  //   if(films !== prevState.films) {
+  //       const filteredFilms = films.filter(film => {
+  //         film.title.toLowerCase().includes(searchParams.toLowerCase());
+  //         this.setState({filtered: filteredFilms})
+  //       })
+  //   }
+  // }
 
   onSearchChange = (event) => {
     this.setState({
@@ -36,23 +41,25 @@ class App extends Component {
   }
 
   onRouteChange = (event) => {
+    const textContent = event.target.textContent;
     this.setState({
-      route: event.target.route
+      route: textContent
     })
   }
 
   render() {
-    // const [ films, planets, starships, people ] = this.state;
-    // const filteredFilms = this.state.films.filter(film => {
-    //   return film.title
-    // })
-    // console.log(this.state.films.title)
+    const { films, planets, starshps, people, searchParams } = this.state;
+    const filteredFilms = films.filter(film => {
+              film.title.toLowerCase().includes(searchParams.toLowerCase());
+              this.setState({filtered: filteredFilms})
+            })
+
     return (
       <>
         <div className="container center">
           <NavBar logo={logo}  onSearchChange={this.onSearchChange} routeChange={this.onRouteChange}/>
         </div>
-        {/* <CardList filmsProp= {this.state.films} /> */}
+        <FilmList films= {this.state.filtered} />
       </>
         
     ); 
