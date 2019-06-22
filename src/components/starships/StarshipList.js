@@ -12,7 +12,7 @@ class StarshipList extends Component {
     }
 
     render() {
-        const [ starships ] = this.state;
+        const [ starships, searchParams ] = this.state;
         const filteredStarshps = starships.filter(starship => starship.title.toLowerCase().includes(searchParams));
         return !filteredStarshps.length?
              (<h1>Loading, this will take a few seconds..</h1>):

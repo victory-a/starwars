@@ -12,7 +12,7 @@ class PlanetList extends Component {
     }
 
     render() {
-        const [ planets ] = this.state;
+        const [ planets, searchParams ] = this.state;
         const filteredPlanets = planets.filter(planet => planet.title.toLowerCase().includes(searchParams));        
         return !filteredPlanets.length?
              (<h1>Loading, this will take a few seconds..</h1>):
