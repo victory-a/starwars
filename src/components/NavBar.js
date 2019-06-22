@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import SearchBox from './SearchBox'
+// import logo from '../images/logo.png';
+import logo from '../images/logo.png';
 import './NavBar.css'
+
 
 class NavBar extends Component {
     constructor() {
@@ -17,7 +20,7 @@ class NavBar extends Component {
     }
 
     render() {
-        const { logo, onSearchChange, routeChange } = this.props;
+        const { onSearchChange } = this.props;
               
         return (
                 <nav className="menu">
