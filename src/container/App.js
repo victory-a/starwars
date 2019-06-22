@@ -1,35 +1,24 @@
 import React, { Component } from 'react';
+import FilmList from '../components/films/FilmList'
+import PeopleList from '../components/people/PeopleList'
+import PlanetList from '../components/planets/PlanetList'
+import StarshipList from '../components/starships/StarshipList'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      searchParams: '',
-      route: 'home'
     } 
   }
-
-  // componentDidUpdate(prevProp, prevState) {
-  //   const { films, planets, starshps, people, searchParams } = this.state;
-  //   if(films !==  prevState.films) {
-  //     const filteredFilms = films.filter(film => film.title.toLowerCase().includes(searchParams));
-  //     this.setState({filteredFilms: filteredFilms})
-  //   }
-    // if(people !==  prevState.people) {
-    //   
-    //   this.setState({filteredPeople: filteredPeople})
-    //   }
-  // }
-
 
 
   render() {
 
       return (
         <>
-          <h1>hello world</h1>
+          {/* <h1>hello world</h1> */}
+          <StarshipList />
         </>
-          
       )
      
   }

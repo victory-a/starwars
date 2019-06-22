@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
-import { urls, apiCall } from '.../apiCall'
-import NavBar from '../components/NavBar.js'; 
-import {onSearchChange} from '../../handlermethods'
+import { urls, apiCall } from '../../api/apiCall'
+import NavBar from '../NavBar'; 
 
 
 class PlanetList extends Component {
+    constructor() {
+        super() 
+        this.state = {
+            searchParams : ''
+        }    
+    }
 
+    onSearchChange = (event) => {
+        this.setState({
+            searchParams: event.target.value
+        })
+      }
+    
     componentDidMount() {
         const [ planets ] = urls;
         apiCall(planets).then(data=>this.setState({ planets: data}))
-    }
+    } 
 
-    render() {
-        const [ planets, searchParams ] = this.state;
-        const filteredPlanets = planets.filter(planet => planet.title.toLowerCase().includes(searchParams));        
-        return !filteredPlanets.length?
-             (<h1>Loading, this will take a few seconds..</h1>):
-        (
+    render() {        
+
+        return(
             <>
                 <div className="container center">
-                    <NavBar onSearchChange={onSearchChange} />
-                </div>     
+                    <NavBar onSearchChange={this.onSearchChange} />
+                </div>
                 <h1>planets</h1>
             </>
         )
-
-    } 
+    }   
 }
 
 

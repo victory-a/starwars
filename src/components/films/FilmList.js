@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
 import { urls, apiCall } from '../../api/apiCall'
-import NavBar from '../components/NavBar.js'; 
-import {onSearchChange} from '../../handlermethods'
+import NavBar from '../NavBar'; 
 
 
 class FilmList extends Component {
+    constructor() {
+        super() 
+        this.state = {
+            searchParams : ''
+        }    
+    }
 
+    onSearchChange = (event) => {
+        this.setState({
+            searchParams: event.target.value
+        })
+      }
+    
     componentDidMount() {
         const [ films ] = urls;
         apiCall(films).then(data=>this.setState({ films: data}))
     }
 
-    render() {
-        const [ films, searchParams ] = this.state;
-        const filteredFilms = films.filter(film => film.title.toLowerCase().includes(searchParams));
-        return !filteredFilms.length?
-             (<h1>Loading, this will take a few seconds..</h1>):
-        (
+    render() {        
+
+        return(
             <>
-          <div className="container center">
-            <NavBar onSearchChange={onSearchChange} />
-          </div>
+                <div className="container center">
+                    <NavBar onSearchChange={this.onSearchChange} />
+                </div>
                 <h1>films</h1>
             </>
         )
-
-    } 
+    }   
 }
 
-
 export default FilmList;
+
+

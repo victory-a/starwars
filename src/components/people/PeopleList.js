@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
-import { urls, apiCall } from '.../apiCall'
-import NavBar from '../components/NavBar.js'; 
-import {onSearchChange} from '../../handlermethods'
+import { urls, apiCall } from '../../api/apiCall'
+import NavBar from '../NavBar'; 
 
 
 class PeopleList extends Component {
+    constructor() {
+        super() 
+        this.state = {
+            searchParams : ''
+        }    
+    }
 
+    onSearchChange = (event) => {
+        this.setState({
+            searchParams: event.target.value
+        })
+      }
+    
     componentDidMount() {
         const [ people ] = urls;
         apiCall(people).then(data=>this.setState({ people: data}))
-    }
+    } 
 
     render() {
-        const [ people, searchParams ] = this.state;
-        const filteredPeople = people.filter(people => people.title.toLowerCase().includes(searchParams));
-        return !filteredPeople.length?
-             (<h1>Loading, this will take a few seconds..</h1>):
-        (
+         
+        return(
             <>
                 <div className="container center">
-                    <NavBar onSearchChange={onSearchChange} />
+                    <NavBar onSearchChange={this.onSearchChange} />
                 </div>           
                 <h1>people</h1>
             </>
         )
-
     } 
 }
 

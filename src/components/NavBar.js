@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SearchBox from './SearchBox'
-import {onSearchChange} from '../../handlermethods'
 // import logo from '../images/logo.png';
 import logo from '../images/logo.png';
 import './NavBar.css'
@@ -34,7 +33,7 @@ class NavBar extends Component {
                         <li className='menu__list-item' ><button className="menu__link">people</button></li>
                     </ul>
                     <button className="menu__search-button" onClick={this.togglevisible}></button>
-                    <SearchBox visibility={this.state.visible} onSearchChange={onSearchChange}/>
+                    <SearchBox visibility={this.state.visible} onSearchChange={this.props.onSearchChange}/>
                     </div>
                 </nav>
  
