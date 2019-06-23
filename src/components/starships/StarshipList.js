@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { urls, apiCall } from '../../api/apiCall'
+import { starships, apiCall } from '../../api/apiCall'
 import NavBar from '../NavBar'; 
 
 
@@ -18,7 +18,6 @@ class StarshipList extends Component {
       }
     
     componentDidMount() {
-        const [ starships ] = urls;
         apiCall(starships).then(data=>this.setState({ starships: data}))
     } 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { urls, apiCall } from '../../api/apiCall'
+import { films, apiCall } from '../../api/apiCall'
 import NavBar from '../NavBar'; 
 
 
@@ -18,7 +18,6 @@ class FilmList extends Component {
       }
     
     componentDidMount() {
-        const [ films ] = urls;
         apiCall(films).then(data=>this.setState({ films: data}))
     }
 
@@ -34,6 +33,7 @@ class FilmList extends Component {
         )
     }   
 }
+
 
 export default FilmList;
 

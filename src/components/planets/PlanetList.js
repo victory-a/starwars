@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { urls, apiCall } from '../../api/apiCall'
+import { planets, apiCall } from '../../api/apiCall'
 import NavBar from '../NavBar'; 
 
 
@@ -18,7 +18,6 @@ class PlanetList extends Component {
       }
     
     componentDidMount() {
-        const [ planets ] = urls;
         apiCall(planets).then(data=>this.setState({ planets: data}))
     } 
 

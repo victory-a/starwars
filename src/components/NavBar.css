@@ -59,8 +59,9 @@ button {
 .active {
     color: #ffaa3b;
     text-decoration: none;
-    /* border-top: 5px solid #ffaa3b; */
-    font-weight: 700;
+    border-top: 3px   solid #ffaa3b;
+    border-bottom: 3px   solid #ffaa3b;
+    /* font-weight: 700; */
 }
 
 .menu__logo {

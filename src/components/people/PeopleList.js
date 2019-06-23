@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { urls, apiCall } from '../../api/apiCall'
+import { people, apiCall } from '../../api/apiCall'
 import NavBar from '../NavBar'; 
 
 
@@ -18,7 +18,6 @@ class PeopleList extends Component {
       }
     
     componentDidMount() {
-        const [ people ] = urls;
         apiCall(people).then(data=>this.setState({ people: data}))
     } 
 
