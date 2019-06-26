@@ -5,6 +5,7 @@ import PlanetList from '../components/planets/PlanetList'
 import StarshipList from '../components/starships/StarshipList'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+
 const NestedRoute = ({component: Component, ...rest}) =>(
   <Route {...rest} render={(props) => (
       <Component {...props} />

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { starships, apiCall } from '../../api/apiCall'
-import NavBar from '../NavBar'; 
+import NavBar from '../NavBar';
+import StarshipsCard from './StarshipsCard'; 
 
 
 class StarshipList extends Component {
     constructor() {
         super() 
         this.state = {
-            searchParams : ''
+            searchParams : '',
+            starships: []
         }    
     }
 
@@ -22,15 +24,25 @@ class StarshipList extends Component {
     } 
 
     render() {        
-
-        return(
+        const { starships, searchParams } = this.state;
+        const filteredstarships = starships.filter(srarship => srarship.name.toLowerCase().includes(searchParams.toLowerCase()))
+ 
+        return ( !starships.length?
             <>
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <h1>starships</h1>
+                <h1 className='tc'>Loading</h1>
+            </> :
+            <>
+                <div className="container center">
+                    <NavBar onSearchChange={this.onSearchChange} />
+                </div>
+                <div className='tc'>
+                    <StarshipsCard starships={filteredstarships}/>
+                </div>
             </>
-        )
+        );
     }   
 }
 

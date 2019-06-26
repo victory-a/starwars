@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { films, apiCall } from '../../api/apiCall'
-import NavBar from '../NavBar'; 
+import NavBar from '../NavBar';
+import FilmsCard from './FilmsCard';
 
 
 class FilmList extends Component {
     constructor() {
         super() 
         this.state = {
-            searchParams : ''
+            searchParams : '',
+            films: []
         }    
     }
 
@@ -22,15 +24,25 @@ class FilmList extends Component {
     }
 
     render() {        
-
-        return(
+        const { films, searchParams } = this.state;
+        const filteredFilms = films.filter(film => film.title.toLowerCase().includes(searchParams.toLowerCase()))
+ 
+        return (!films.length?
             <>
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <h1>films</h1>
+                <h1 className='tc'>Loading</h1>
+            </> :
+            <>
+                <div className="container center">
+                    <NavBar onSearchChange={this.onSearchChange} />
+                </div>
+                <div className='tc'>
+                    <FilmsCard  films={filteredFilms} />
+                </div>
             </>
-        )
+        );        
     }   
 }
 

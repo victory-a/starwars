@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { people, apiCall } from '../../api/apiCall'
 import NavBar from '../NavBar'; 
-
+import PeopleCard from './PeopleCard';
 
 class PeopleList extends Component {
     constructor() {
         super() 
         this.state = {
-            searchParams : ''
+            searchParams : '',
+            people: []
         }    
     }
 
@@ -22,15 +23,25 @@ class PeopleList extends Component {
     } 
 
     render() {
-         
-        return(
+        const { people, searchParams } = this.state;
+        const filteredpeople = people.filter(person => person.name.toLowerCase().includes(searchParams.toLowerCase()))
+ 
+        return ( !people.length?
             <>
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
-                </div>           
-                <h1>people</h1>
+                </div>
+                <h1 className='tc'>Loading</h1>
+            </> :
+            <>
+                <div className="container center">
+                    <NavBar onSearchChange={this.onSearchChange} />
+                </div>
+                <div className='tc'>
+                    <PeopleCard people={filteredpeople} />
+                </div>
             </>
-        )
+        );
     } 
 }
 
