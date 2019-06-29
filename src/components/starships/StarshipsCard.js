@@ -1,14 +1,18 @@
 import React from 'react';
+import imageMapper from '../../helperFunctions/imageMapper';
 
 const StarshipsCard = ({starships}) => {
     const starshipsArray = starships.map((starship, i) => {
+        const image = imageMapper(starship.name)
+
         return (
             <Card 
-                key={starships[i]}
+                key={i}
                 name={starship.name}
                 model={starship.model}
-                manufacturer={starship.manufacturer}
+                consumables={starship.consumables}
                 crew={starship.crew}
+                image={image}
             />
         )
     })
@@ -21,19 +25,25 @@ const StarshipsCard = ({starships}) => {
 
 }
 
-const Card = ({name, model, manufacturer, crew}) => {
+const Card = ({name, model, consumables, crew, image}) => {
     return (
-        <div className="tc bg-light-green dib be3 pa3 ma2 grow bw2 shadow-5">
-            <img alt='' src='#'/>
+        <div className="tc bg-light-grey br3 dib be3 pa3 ma2 grow bw2 ba bw1 b--gold shadow-5 b0-80">
+            <img className='br3 grow bw2 shadow-5' alt='' 
+                src={require(`../../images/${image}`)} 
+                style={{ maxWidth: '270px', maxHeight: '300px' }}    
+            />
             <div>
-                <h2>{name}</h2>
-                <p>model: {model}</p>
-                <p>crew number: {crew}</p>
-                <p>manufacturer: {manufacturer}</p>
+                <dl className="silver lh-title pt3 ph1 mt0">
+                    <dt className='f8 b'>{name}</dt>
+                    <dt>model: {model}</dt>
+                    <dt>crew number: {crew}</dt>
+                    <dt>consumables: {consumables}</dt>
+                </dl>
             </div>
         </div>
     )
 }
+
 
 export default StarshipsCard;
     

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { films, apiCall } from '../../api/apiCall'
+import { films, apiCall } from '../../helperFunctions/apiCall'
 import NavBar from '../NavBar';
 import FilmsCard from './FilmsCard';
+import Scroll from '../Scroll';
 
 
 class FilmList extends Component {
@@ -32,15 +33,17 @@ class FilmList extends Component {
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <h1 className='tc'>Loading</h1>
+                <h1 className='tc yellow'>Loading</h1>
             </> :
             <>
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <div className='tc'>
-                    <FilmsCard  films={filteredFilms} />
-                </div>
+                <Scroll>
+                    <div className='tc'>
+                        <FilmsCard  films={filteredFilms} />
+                    </div>
+                </Scroll>
             </>
         );        
     }   

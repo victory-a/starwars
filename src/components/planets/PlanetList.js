@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { planets, apiCall } from '../../api/apiCall'
+import { planets, apiCall } from '../../helperFunctions/apiCall'
 import NavBar from '../NavBar'; 
 import PlanetsCard from './PlanetsCard';
+import Scroll from '../Scroll';
+
 
 class PlanetList extends Component {
     constructor() {
@@ -31,15 +33,17 @@ class PlanetList extends Component {
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <h1 className='tc'>Loading</h1>
+                <h1 className='tc yellow'>Loading</h1>
             </> :
             <>
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <div className='tc'>
-                    <PlanetsCard  planets={filteredPlanets} />
-                </div>
+                <Scroll>
+                    <div className='tc'>
+                        <PlanetsCard  planets={filteredPlanets} />
+                    </div>
+                </Scroll>
             </>
         );
     }   

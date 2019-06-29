@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { starships, apiCall } from '../../api/apiCall'
+import { starships, apiCall } from '../../helperFunctions/apiCall'
 import NavBar from '../NavBar';
 import StarshipsCard from './StarshipsCard'; 
+import Scroll from '../Scroll';
 
 
 class StarshipList extends Component {
@@ -32,15 +33,18 @@ class StarshipList extends Component {
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <h1 className='tc'>Loading</h1>
+                <h1 className='tc yellow'>Loading</h1>
             </> :
             <>
                 <div className="container center">
                     <NavBar onSearchChange={this.onSearchChange} />
                 </div>
-                <div className='tc'>
-                    <StarshipsCard starships={filteredstarships}/>
-                </div>
+                <Scroll>
+                    <div className='tc'>
+                        <StarshipsCard starships={filteredstarships}/>
+                    </div>
+                </Scroll>
+
             </>
         );
     }   
