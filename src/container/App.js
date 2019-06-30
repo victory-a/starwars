@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FilmList from '../components/films/FilmList'
 import PeopleList from '../components/people/PeopleList'
 import PlanetList from '../components/planets/PlanetList'
@@ -12,17 +12,9 @@ const NestedRoute = ({component: Component, ...rest}) =>(
   )} />
 )
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-    } 
-  }
+const App = () => {
 
-
-  render() {
-
-      return (
+  return (
         <>
           <Router>
             <Route exact path='/' component={FilmList} />
@@ -31,9 +23,6 @@ class App extends Component {
             <NestedRoute path='/starships' component={StarshipList} />
           </Router>
         </>
-      )
-     
-  }
-
+      ) 
 }
 export default App;

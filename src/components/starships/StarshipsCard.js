@@ -3,7 +3,7 @@ import imageMapper from '../../helperFunctions/imageMapper';
 
 const StarshipsCard = ({starships}) => {
     const starshipsArray = starships.map((starship, i) => {
-        const image = imageMapper(starship.name)
+        const image = imageMapper(starship.name);
 
         return (
             <Card 
