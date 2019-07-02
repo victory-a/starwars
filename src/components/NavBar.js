@@ -24,7 +24,7 @@ class NavBar extends Component {
         return (
             <>
                 <nav className="menu">
-                    <h1 style={{backgroundImage: 'url('+ logo +')'}} className="menu__logo" >StarWars</h1>
+                    <h1 style={{backgroundImage: `url(${logo})`}} className="menu__logo" >StarWars</h1>
                     <div className="menu__right">
                         <ul className="menu__list">
                             <li className='menu__list-item' ><NavLink exact to='/' className="menu__link" activeClassName='active'>films</NavLink></li>
