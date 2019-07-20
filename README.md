@@ -7,4 +7,4 @@ A react app displaying resources from a starwars api.
 * Abstraction to impove efficiency
 * Protected routes using react-router
 * Asynchronous programming using async await.
-* Mapping files using require. 
+* Scenarios for using require. 
